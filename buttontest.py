@@ -17,8 +17,7 @@ GPIO.setup(24, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 #GPIO.setup(18, GPIO.OUT)  # Flash LED 
 #GPIO.output(18, GPIO.HIGH)
 
-shutter_button = GPIO.input(15)
-flash_button = GPIO.input(24)
+
 
 flash_on = True
 flash_button_count = 0
@@ -29,6 +28,8 @@ print('Initialisation success')
 #try:
 print('True loop started')
 while True:
+    shutter_button = GPIO.input(15)
+    flash_button = GPIO.input(24)
 
     if shutter_button == False:
         print('Taking picture')
