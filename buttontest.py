@@ -12,10 +12,10 @@ GPIO.setmode(GPIO.BCM)
 
 GPIO.setup(15, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(24, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(21, GPIO.OUT)  # Button LED 
-GPIO.output(21, GPIO.LOW)
-GPIO.setup(18, GPIO.OUT)  # Flash LED 
-GPIO.output(18, GPIO.HIGH)
+#GPIO.setup(21, GPIO.OUT)  # Button LED 
+#GPIO.output(21, GPIO.LOW)
+#GPIO.setup(18, GPIO.OUT)  # Flash LED 
+#GPIO.output(18, GPIO.HIGH)
 
 shutter_button = GPIO.input(15)
 flash_button = GPIO.input(24)
