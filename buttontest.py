@@ -26,29 +26,29 @@ prev_pressed = False
 
 print('Initialisation success')
 
-try:
-    print('True loop started')
-    while True:
+#try:
+print('True loop started')
+while True:
 
-        if shutter_button == False:
-            print('Taking picture')
-            flash_button_count = 0
+    if shutter_button == False:
+        print('Taking picture')
+        flash_button_count = 0
 
-        elif flash_button == False:
-            flash_button_count += 1
-            if prev_pressed is True and flash_button_count >= 12:
-                print('Initiating shutdown')
-            elif prev_pressed is False:
-                print('Switching flash')
-            else:
-                prev_pressed = True
+    elif flash_button == False:
+        flash_button_count += 1
+        if prev_pressed is True and flash_button_count >= 12:
+            print('Initiating shutdown')
+        elif prev_pressed is False:
+            print('Switching flash')
         else:
-            flash_button_count = 0
-            prev_pressed = False
-        time.sleep(0.1)
+            prev_pressed = True
+    else:
+        flash_button_count = 0
+        prev_pressed = False
+    time.sleep(0.1)
 
-except KeyboardInterrupt:
-    GPIO.output(21, GPIO.LOW)
-    GPIO.output(18, GPIO.LOW)
-    GPIO.cleanup()
-    quit()
+#except KeyboardInterrupt:
+#    GPIO.output(21, GPIO.LOW)
+#    GPIO.output(18, GPIO.LOW)
+#    GPIO.cleanup()
+#    quit()
