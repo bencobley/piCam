@@ -30,11 +30,11 @@ try:
     print('True loop started')
     while True:
 
-        if shutter_button == False:
+        if shutter_button == True:
             print('Taking picture')
             flash_button_count = 0
 
-        elif flash_button == False:
+        elif flash_button == True:
             flash_button_count += 1
             if prev_pressed is True and flash_button_count >= 12:
                 print('Initiating shutdown')
