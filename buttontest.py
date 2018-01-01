@@ -29,7 +29,6 @@ print('Initialisation success')
 try:
     print('True loop started')
     while True:
-        button_on()
 
         if shutter_button is False:
             print('Taking picture')
