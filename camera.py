@@ -55,8 +55,8 @@ print('Initialisation success')
 button_flash(5, 0.25)
 
 try:
+    print('True loop started')
     while True:
-        print('True loop started')
         button_on()
 
         if shutter_button is False:
