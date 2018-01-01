@@ -11,14 +11,14 @@ print('Copyright Ben Cobley 2018')
 GPIO.setmode(GPIO.BCM)
 
 GPIO.setup(15, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(24, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(21, GPIO.OUT)  # Button LED 
 GPIO.output(21, GPIO.LOW)
 GPIO.setup(18, GPIO.OUT)  # Flash LED 
 GPIO.output(18, GPIO.HIGH)
 
 shutter_button = GPIO.input(15)
-flash_button = GPIO.input(23)
+flash_button = GPIO.input(24)
 
 flash_on = True
 flash_button_count = 0
@@ -30,11 +30,11 @@ try:
     print('True loop started')
     while True:
 
-        if shutter_button is False:
+        if shutter_button == False:
             print('Taking picture')
             flash_button_count = 0
 
-        elif flash_button is False:
+        elif flash_button == False:
             flash_button_count += 1
             if prev_pressed is True and flash_button_count >= 12:
                 print('Initiating shutdown')
