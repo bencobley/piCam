@@ -28,7 +28,8 @@ try:
     while True:
         shutter_button = GPIO.input(15)
         flash_button = GPIO.input(24)
-
+        print(flash_button_count)
+        
         if shutter_button == False:
             print('Taking picture')
             time.sleep(0.2)
@@ -36,7 +37,6 @@ try:
 
         elif flash_button == False:
             print('yes')
-            time.sleep(0.2)
             flash_button_count += 1
             if prev_pressed is True and flash_button_count >= 12:
                 print('Initiating shutdown')
@@ -44,11 +44,11 @@ try:
                 print('Switching flash')
             else:
                 prev_pressed = True
+            time.sleep(0.2)
         
         else:
             flash_button_count = 0
             prev_pressed = False
-        time.sleep(0.2)
 
 except KeyboardInterrupt:
     GPIO.output(21, GPIO.LOW)
