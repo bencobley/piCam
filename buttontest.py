@@ -28,8 +28,6 @@ try:
     while True:
         shutter_button = GPIO.input(15)
         flash_button = GPIO.input(24)
-        print(flash_button_count)
-        print(prev_pressed)
         
         if shutter_button == False:
             print('Taking picture')
