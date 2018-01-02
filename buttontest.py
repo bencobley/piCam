@@ -30,10 +30,11 @@ try:
         shutter_button = GPIO.input(15)
         flash_button = GPIO.input(24)
         
-        if shutter_button == False and shutter_prev_pressed == False:
-            print('Taking picture')
-            time.sleep(1)
-            flash_button_count = 0
+        if shutter_button == False
+            if shutter_prev_pressed == False:
+                print('Taking picture')
+                time.sleep(1)
+                flash_button_count = 0
             shutter_prev_pressed = True
 
         elif flash_button is False:
