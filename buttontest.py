@@ -19,7 +19,8 @@ GPIO.output(18, GPIO.HIGH)
 
 flash_on = True
 flash_button_count = 0
-prev_pressed = False
+flash_prev_pressed = False
+shutter_prev_pressed = False
 
 print('Initialisation success')
 
@@ -29,29 +30,31 @@ try:
         shutter_button = GPIO.input(15)
         flash_button = GPIO.input(24)
         
-        if shutter_button == False:
+        if shutter_button is False and shutter_prev_pressed is False:
             print('Taking picture')
-            time.sleep(0.8)
+            time.sleep(1)
             flash_button_count = 0
+            shutter_prev_pressed = True
 
-        elif flash_button == False:
+        elif flash_button is False:
             print('yes')
             flash_button_count += 1
-            if prev_pressed is True and flash_button_count >=8:
+            if flash_prev_pressed is True and flash_button_count >=8:
                 print('Initiating shutdown')
             else:
                 prev_pressed = True
             time.sleep(0.2)
             
-        elif prev_pressed is True: #and flash button not pressed
+        elif flash_prev_pressed is True: #and flash button not pressed
             print('Switching flash')
             time.sleep(0.2)
             flash_button_count = 0
-            prev_pressed = False
+            flash_prev_pressed = False
 
         else:
             flash_button_count = 0
-            prev_pressed = False
+            flash_prev_pressed = False
+            shutter_prev_pressed = False
         time.sleep(0.2)
 
 except KeyboardInterrupt:
