@@ -50,7 +50,7 @@ def switch_flash_off():
     
 def get_filename():
     now = datetime.datetime.now()
-    time_string = now.strftime("%Y%m%d_%H%M%S")
+    time_string = now.strftime("%m%d_%H%M%S")
     file_name = "CC_" + time_string + ".jpg"
     return file_name
 
