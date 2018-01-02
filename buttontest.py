@@ -48,7 +48,9 @@ try:
         elif prev_pressed is True: #and flash button not pressed
             print('Switching flash')
             time.sleep(0.2)
-            
+            flash_button_count = 0
+            prev_pressed = False
+
         else:
             flash_button_count = 0
             prev_pressed = False
