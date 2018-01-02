@@ -58,13 +58,13 @@ def get_filename():
 
 print('Initialisation success')
 button_blink(5, 0.25)
-button_LED_on()
 
 try:
     print('True loop started')
     while True:
         shutter_button = GPIO.input(15)
         flash_button = GPIO.input(24)
+        button_LED_on()
         
         if shutter_button == False:
             print('Shutter Button')
