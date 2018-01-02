@@ -68,8 +68,8 @@ try:
                 switch_flash_on()
                 image_name = get_filename()
                 print(image_name)
-                #command = "sudo raspistill -o " + image_name + " -q 100 -t " + camera_pause
-                #s.system(command)
+                command = "sudo raspistill -o " + image_name + " -q 100 -t " + camera_pause
+                s.system(command)
                 time.sleep(1)
                 switch_flash_off()
                 button_LED_on()
