@@ -54,22 +54,17 @@ def get_filename():
     file_name = "CC_" + time_string + ".jpg"
     return file_name
 
-
-print('Initialisation success')
 button_blink(5, 0.25)
 
 try:
-    print('True loop started')
     while True:
         shutter_button = GPIO.input(15)
         flash_button = GPIO.input(24)
         button_LED_on()
         
         if shutter_button == False:
-            print('Shutter Button')
             if shutter_prev_pressed == False:
                 button_LED_off()
-                print('Taking picture')
                 switch_flash_on()
                 image_name = get_filename()
                 print(image_name)
@@ -81,10 +76,8 @@ try:
             shutter_prev_pressed = True
 
         elif flash_button == False:
-            print('Flash Button')
             if flash_prev_pressed == True and flash_button_count >=8:
-                print('Initiating shutdown')
-                #os.system("sudo shutdown -h now")
+                os.system("sudo shutdown -h now")
                 button_blink(60, 0.5)
             else:
                 flash_prev_pressed = True
@@ -92,7 +85,6 @@ try:
             time.sleep(0.2)
             
         elif flash_prev_pressed == True: #and flash button not pressed by definition
-            print('Switching flash')
             if flash_on:
                 flash_on = False
                 button_blink(1, 0.5)
