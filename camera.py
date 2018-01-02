@@ -54,7 +54,7 @@ def get_filename():
     file_name = "CC_" + time_string + ".jpg"
     return file_name
 
-button_blink(5, 0.25)
+button_blink(2, 0.25)
 
 try:
     while True:
@@ -69,7 +69,7 @@ try:
                 image_name = get_filename()
                 print(image_name)
                 command = "sudo raspistill -o " + image_name + " -q 100 -t " + camera_pause
-                s.system(command)
+                os.system(command)
                 time.sleep(1)
                 switch_flash_off()
                 button_LED_on()
