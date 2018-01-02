@@ -5,29 +5,25 @@ import time
 import os
 import datetime
 
-print('Raspberry Pi Cardboard Camera ')
+print('Raspberry Pi Button Test ')
 print('Copyright Ben Cobley 2018')
 
 GPIO.setmode(GPIO.BCM)
 
 GPIO.setup(15, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(24, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(21, GPIO.OUT)  # Button LED 
 GPIO.output(21, GPIO.LOW)
 GPIO.setup(18, GPIO.OUT)  # Flash LED 
 GPIO.output(18, GPIO.HIGH)
 
-shutter_button = GPIO.input(15)
-flash_button = GPIO.input(23)
-
 flash_on = True
 flash_button_count = 0
-prev_pressed = False
+flash_prev_pressed = False
+shutter_prev_pressed = False
 
-camera_pause = "500"
 
-
-def button_flash(n, flash_delay):
+def button_blink(n, flash_delay):
     for repeats in range(n):
         GPIO.output(21, GPIO.LOW)
         time.sleep(flash_delay)
@@ -35,14 +31,23 @@ def button_flash(n, flash_delay):
         time.sleep(flash_delay)
 
 
-def button_on():
-    GPIO.output(21, GPIO.HIGH)
+def button_LED_on():
+    GPIO.output(18, GPIO.HIGH)
 
 
-def button_off():
+def button_LED_off():
+    GPIO.output(18, GPIO.LOW)
+
+    
+def switch_flash_on():
+    if flash_on:
+        GPIO.output(21, GPIO.HIGH)
+    
+
+def switch_flash_off():
     GPIO.output(21, GPIO.LOW)
-
-
+    
+    
 def get_filename():
     now = datetime.datetime.now()
     time_string = now.strftime("%Y-%m-%d_%H:%M:%S")
@@ -52,50 +57,61 @@ def get_filename():
 
 
 print('Initialisation success')
-button_flash(5, 0.25)
+button_blink(5, 0.25)
+button_LED_on()
 
 try:
     print('True loop started')
     while True:
-        button_on()
+        shutter_button = GPIO.input(15)
+        flash_button = GPIO.input(24)
+        
+        if shutter_button == False:
+            print('Shutter Button')
+            if shutter_prev_pressed == False:
+                button_LED_off()
+                print('Taking picture')
+                switch_flash_on()
+                image_name = get_filename()
+                print(image_name)
+                #command = "sudo raspistill -o " + image_name + " -q 100 -t " + camera_pause
+                #s.system(command)
+                time.sleep(1)
+                switch_flash_off()
+                button_LED_on()
+            shutter_prev_pressed = True
 
-        if shutter_button is False:
-            print('Taking picture')
-            button_off()
-            if flash_on:
-                GPIO.output(21, GPIO.HIGH)
-            image_name = get_filename()
-            command = "sudo raspistill -o " + image_name + " -q 100 -t " + camera_pause
-            os.system(command)
-            GPIO.output(21, GPIO.LOW)
-            flash_button_count = 0
-
-        elif flash_button is False:
-            flash_button_count += 1
-            if prev_pressed is True and flash_button_count >= 12:
+        elif flash_button == False:
+            print('Flash Button')
+            if flash_prev_pressed == True and flash_button_count >=8:
                 print('Initiating shutdown')
-                os.system("sudo shutdown -h now")
-                button_flash(60, 0.5)
-            elif prev_pressed is False:
-                print('Switching flash')
-                if flash_on:
-                    flash_on = False
-                    button_flash(1, 0.5)
-                else:
-                    flash_on = True
-                    button_flash(2, 0.25)
+                #os.system("sudo shutdown -h now")
+                button_blink(60, 0.5)
             else:
-                prev_pressed = True
+                flash_prev_pressed = True
+            flash_button_count += 1
+            time.sleep(0.2)
+            
+        elif flash_prev_pressed == True: #and flash button not pressed by definition
+            print('Switching flash')
+            if flash_on:
+                flash_on = False
+                button_blink(1, 0.5)
+            else:
+                flash_on = True
+                button_blink(2, 0.25)
+            flash_button_count = 0
+            flash_prev_pressed = False
 
         else:
             flash_button_count = 0
-            prev_pressed = False
-        time.sleep(0.1)
+            flash_prev_pressed = False
+            shutter_prev_pressed = False
+        time.sleep(0.2)
 
 except KeyboardInterrupt:
     GPIO.output(21, GPIO.LOW)
     GPIO.output(18, GPIO.LOW)
     GPIO.cleanup()
     quit()
-
 
