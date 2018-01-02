@@ -12,16 +12,16 @@ GPIO.setmode(GPIO.BCM)
 
 GPIO.setup(15, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(24, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(21, GPIO.OUT)  # Button LED 
+GPIO.setup(21, GPIO.OUT)  # Flash LED 
 GPIO.output(21, GPIO.LOW)
-GPIO.setup(18, GPIO.OUT)  # Flash LED 
+GPIO.setup(18, GPIO.OUT)  # Button LED 
 GPIO.output(18, GPIO.HIGH)
 
 flash_on = True
 flash_button_count = 0
 flash_prev_pressed = False
 shutter_prev_pressed = False
-
+camera_pause = "500"
 
 def button_blink(n, flash_delay):
     for repeats in range(n):
