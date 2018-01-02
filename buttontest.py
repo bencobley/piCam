@@ -42,7 +42,7 @@ try:
             if flash_prev_pressed is True and flash_button_count >=8:
                 print('Initiating shutdown')
             else:
-                prev_pressed = True
+                flash_prev_pressed = True
             time.sleep(0.2)
             
         elif flash_prev_pressed is True: #and flash button not pressed
