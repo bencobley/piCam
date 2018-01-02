@@ -38,7 +38,7 @@ try:
                 flash_button_count = 0
             shutter_prev_pressed = True
 
-        elif flash_button is False:
+        elif flash_button == False:
             print('Flash Button')
             if flash_prev_pressed == True and flash_button_count >=8:
                 print('Initiating shutdown')
