@@ -33,13 +33,13 @@ try:
         
         if shutter_button == False:
             print('Taking picture')
-            time.sleep(0.2)
+            time.sleep(0.8)
             flash_button_count = 0
 
         elif flash_button == False:
             print('yes')
             flash_button_count += 1
-            if prev_pressed is True and flash_button_count >= 5:
+            if prev_pressed is True and flash_button_count >=8:
                 print('Initiating shutdown')
             else:
                 prev_pressed = True
