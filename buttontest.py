@@ -41,12 +41,14 @@ try:
             flash_button_count += 1
             if prev_pressed is True and flash_button_count >= 12:
                 print('Initiating shutdown')
-            elif prev_pressed is False:
-                print('Switching flash')
             else:
                 prev_pressed = True
             time.sleep(0.2)
-        
+            
+        elif prev_pressed is True: #and flash button not pressed
+            print('Switching flash')
+            time.sleep(0.2)
+            
         else:
             flash_button_count = 0
             prev_pressed = False
