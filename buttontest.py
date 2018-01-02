@@ -29,6 +29,7 @@ try:
         shutter_button = GPIO.input(15)
         flash_button = GPIO.input(24)
         print(flash_button_count)
+        print(prev_pressed)
         
         if shutter_button == False:
             print('Taking picture')
@@ -49,6 +50,7 @@ try:
         else:
             flash_button_count = 0
             prev_pressed = False
+        time.sleep(0.2)
 
 except KeyboardInterrupt:
     GPIO.output(21, GPIO.LOW)
