@@ -39,7 +39,7 @@ try:
         elif flash_button == False:
             print('yes')
             flash_button_count += 1
-            if prev_pressed is True and flash_button_count >= 12:
+            if prev_pressed is True and flash_button_count >= 5:
                 print('Initiating shutdown')
             else:
                 prev_pressed = True
