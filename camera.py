@@ -25,27 +25,27 @@ shutter_prev_pressed = False
 
 def button_blink(n, flash_delay):
     for repeats in range(n):
-        GPIO.output(21, GPIO.LOW)
+        GPIO.output(18, GPIO.LOW)
         time.sleep(flash_delay)
-        GPIO.output(21, GPIO.HIGH)
+        GPIO.output(18, GPIO.HIGH)
         time.sleep(flash_delay)
 
 
 def button_LED_on():
-    GPIO.output(21, GPIO.HIGH)
+    GPIO.output(18, GPIO.HIGH)
 
 
 def button_LED_off():
-    GPIO.output(21, GPIO.LOW)
+    GPIO.output(18, GPIO.LOW)
 
     
 def switch_flash_on():
     if flash_on:
-        GPIO.output(18, GPIO.HIGH)
+        GPIO.output(21, GPIO.HIGH)
     
 
 def switch_flash_off():
-    GPIO.output(18, GPIO.LOW)
+    GPIO.output(21, GPIO.LOW)
     
     
 def get_filename():
