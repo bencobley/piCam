@@ -78,11 +78,11 @@ try:
         elif flash_button == False:
             if flash_prev_pressed == True and flash_button_count >=8:
                 button_LED_off()
+                time.sleep(0.25)
+                button_LED_on()
                 GPIO.output(25, GPIO.LOW)
                 GPIO.output(18, GPIO.LOW)
                 GPIO.cleanup()
-                time.sleep(0.25)
-                button_LED_on()
                 os.system("sudo shutdown -h now")
                 button_blink(60, 0.5)
             else:
