@@ -13,7 +13,7 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(15, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(24, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(25, GPIO.OUT)  # Flash LED 
-GPIO.output(21, GPIO.LOW)
+GPIO.output(25, GPIO.LOW)
 GPIO.setup(18, GPIO.OUT)  # Button LED 
 GPIO.output(18, GPIO.HIGH)
 
