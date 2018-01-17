@@ -41,11 +41,11 @@ def button_LED_off():
     
 def switch_flash_on():
     if flash_on:
-        GPIO.output(21, GPIO.HIGH)
+        GPIO.output(25, GPIO.HIGH)
     
 
 def switch_flash_off():
-    GPIO.output(21, GPIO.LOW)
+    GPIO.output(25, GPIO.LOW)
     
     
 def get_filename():
@@ -101,7 +101,7 @@ try:
         time.sleep(0.2)
 
 except KeyboardInterrupt:
-    GPIO.output(21, GPIO.LOW)
+    GPIO.output(25, GPIO.LOW)
     GPIO.output(18, GPIO.LOW)
     GPIO.cleanup()
     quit()
