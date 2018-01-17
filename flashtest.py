@@ -5,7 +5,7 @@ import time
 import os
 import datetime
 
-print('Raspberry Pi Button Test ')
+print('Raspberry Pi Flash Test ')
 print('Copyright Ben Cobley 2018')
 
 GPIO.setmode(GPIO.BCM)
