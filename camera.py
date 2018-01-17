@@ -14,6 +14,8 @@ GPIO.setup(15, GPIO.IN, pull_up_down=GPIO.PUD_UP)  # Button 1
 GPIO.setup(24, GPIO.IN, pull_up_down=GPIO.PUD_UP)  # Button 2
 GPIO.setup(21, GPIO.OUT)  # Flash LED 
 GPIO.output(21, GPIO.LOW) #Breaks the button LED for some reason? 
+GPIO.setup(25, GPIO.OUT)  # Flash LED 
+GPIO.output(25, GPIO.LOW) #Breaks the button LED for some reason? 
 GPIO.setup(18, GPIO.OUT)  # Button LED 
 GPIO.output(18, GPIO.HIGH)
 
